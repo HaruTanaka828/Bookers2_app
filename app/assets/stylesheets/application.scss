@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";  /*ここを追加*/
+@import "bootstrap";            /*ここを追加*/
+
+
+.header-list{
+	float:right;
+}
+
+footer{
+	float:right;
+}
+.kuhaku{
+	margin-bottom:10px;
+}
