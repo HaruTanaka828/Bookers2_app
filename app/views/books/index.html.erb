@@ -37,6 +37,24 @@
 
 </tr>
 
+<tr>
+  <td>Follows</td>
+  <td>
+    <a href="<%= following_user_path(current_user) %>">
+    <%= current_user.followings.count %>人
+    </a>
+  </td>
+</tr>
+
+<tr>
+  <td>Followers</td>
+  <td>
+    <a href="<%= followers_user_path(current_user) %>">
+    <%= current_user.followers.count %>人
+    </a>
+  </td>
+</tr>
+
 </table>
 
 <%= link_to edit_user_path(current_user) do %>

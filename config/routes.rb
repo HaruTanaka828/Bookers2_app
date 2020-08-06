@@ -13,4 +13,13 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :index, :edit, :update]
 
+
+  resources :users do
+    member do
+     get :following, :followers
+    end
+  end
+
+  resources :relationships, only: [:create, :destroy]
+
 end

@@ -17,34 +17,53 @@
 <table class="table">
 
 <tr>
-
-<td>name</td>
-
-<td><%= @user.name %></td>
-
+  <td>name</td>
+  <td><%= @user.name %></td>
 </tr>
 
-<td>introduction</td>
+<tr>
+  <td>introduction</td>
+  <td><%= @user.introduction %></td>
+</tr>
 
-<td><%= @user.introduction %></td>
+<tr>
+  <td>Follows</td>
+  <td>
+    <a href="<%= following_user_path(@user) %>">
+    <%= @user.followings.count %>人
+    </a>
+  </td>
+</tr>
 
+<tr>
+  <td>Followers</td>
+  <td>
+    <a href="<%= followers_user_path(@user) %>">
+    <%= @user.followers.count %>人
+    </a>
+  </td>
 </tr>
 
 </table>
 
+<div class="follow-btn">
+<% unless current_user?(@user) %>
+  <div id="follow_form">
+  <% if current_user.following?(@user) %>
+    <%= render 'unfollow' %>
+  <% else %>
+    <%= render 'follow' %>
+  <% end %>
+  </div>
+<% end %>
+</div>
 
-<% if @user.id == current_user.id %>
+<% if current_user?(@user) %>
 <%= link_to edit_user_path(current_user) do %>
 <button type="button" class="btn btn-default btn-block"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
 </button>
 <% end %>
-<% else %>
-<%= link_to user_path(current_user.id) do %>
-<button type="button" class="btn btn-default btn-block"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-</button>
 <% end %>
-<% end %>
-
 
 
 <h1>New book</h1>
@@ -74,10 +93,6 @@
   </div>
 
 <% end %>
-
-
-
-
 
 
 </div>
